@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="stonutils",
-    version="0.0.4",
+    version="0.0.5",
     author="toantt208",
     description=(
         "STonutils is a high-level, object-oriented Python library "
@@ -45,4 +45,6 @@ setuptools.setup(
     ],
     keywords="TON, The Open Network, TON blockchain, blockchain, crypto, asynchronous, smart contracts",
     license="MIT",
+    use_scm_version=True,
+    setup_requires=["setuptools_scm"],
 )

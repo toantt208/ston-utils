@@ -26,7 +26,7 @@ def main() -> None:
 
     wallet, public_key, private_key, mnemonic = WalletV5R1.from_mnemonic(
         mnemonic=MNEMONIC,
-        client=None,
+        client=client,
     )
 
     address = wallet.address.to_str(
