@@ -1,7 +1,7 @@
 import base64
-from typing import Any, List, Optional
+from typing import Any, List, Optional, Union
 
-from pytoniq_core import Cell
+from pytoniq_core import Cell, Address
 
 from ._base import Client
 from ..account import AccountStatus, RawAccount
@@ -83,3 +83,26 @@ class ToncenterClient(Client):
         raw_account = await self.get_raw_account(address)
 
         return raw_account.balance
+
+    async def estimate_fee(
+        self,
+        address: str,
+        body: str,
+        init_code: str,
+        init_data: str,
+        ignore_chksig: bool = True,
+    ):
+        method = "/api/v3/estimateFee"
+        body = {
+            "address": str(address),
+            "body": body,
+            "init_code": init_code,
+            "init_data": init_data,
+            "ignore_chksig": 'true' if ignore_chksig else 'false',
+        }
+        result = await self._post(
+            method=method,
+            body=body,
+        )
+
+        return result

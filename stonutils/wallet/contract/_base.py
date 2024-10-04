@@ -58,7 +58,7 @@ class Wallet(Contract):
 
     def __init__(
             self,
-            client: Client,
+            client: Optional[Client],
             public_key: bytes,
             private_key: bytes,
             wallet_id: int = 698983191,
@@ -221,7 +221,7 @@ class Wallet(Contract):
     @classmethod
     def from_mnemonic(
             cls,
-            client: Client,
+            client: Optional[Client],
             mnemonic: Union[List[str], str],
             **kwargs,
     ) -> Tuple[Any, bytes, bytes, List[str]]:
@@ -235,13 +235,15 @@ class Wallet(Contract):
         if isinstance(mnemonic, str):
             mnemonic = mnemonic.split(" ")
 
+        assert len(mnemonic) == 24, 'Mnemonic phrase must contain 24 words'
+
         public_key, private_key = mnemonic_to_private_key(mnemonic)
         return cls(client, public_key, private_key, **kwargs), public_key, private_key, mnemonic
 
     @classmethod
     def create(
             cls,
-            client: Client,
+            client: Optional[Client],
             **kwargs,
     ) -> Tuple[Any, bytes, bytes, List[str]]:
         """

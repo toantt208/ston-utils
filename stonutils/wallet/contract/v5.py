@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import time
-from typing import List, Tuple, Union
+from typing import List, Tuple, Union, Optional
 
 from pytoniq_core import Cell, WalletMessage, begin_cell
 from pytoniq_core.crypto.signature import sign_message
@@ -22,7 +22,7 @@ class WalletV5R1(Wallet):
 
     def __init__(
             self,
-            client: Client,
+            client: Optional[Client],
             public_key: bytes,
             private_key: bytes,
             wallet_id: int = 0,
@@ -53,7 +53,7 @@ class WalletV5R1(Wallet):
     @classmethod
     def from_private_key(
             cls,
-            client: Client,
+            client: Optional[Client],
             private_key: bytes,
             wallet_id: int = 0,
             **kwargs,
@@ -63,7 +63,7 @@ class WalletV5R1(Wallet):
     @classmethod
     def from_mnemonic(
             cls,
-            client: Client,
+            client: Optional[Client],
             mnemonic: Union[List[str], str],
             wallet_id: int = 0,
             **kwargs,
@@ -73,7 +73,7 @@ class WalletV5R1(Wallet):
     @classmethod
     def create(
             cls,
-            client: Client,
+            client: Optional[Client],
             wallet_id: int = 0,
             **kwargs,
     ) -> Tuple[WalletV5R1, bytes, bytes, List[str]]:
