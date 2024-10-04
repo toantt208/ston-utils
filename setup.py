@@ -4,23 +4,23 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="tonutils",
-    version="0.1.1",
-    author="nessshon",
+    name="stonutils",
+    version="0.0.1",
+    author="toantt208",
     description=(
-        "Tonutils is a high-level, object-oriented Python library "
+        "STonutils is a high-level, object-oriented Python library "
         "designed to facilitate seamless interactions with the TON blockchain."
     ),
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/nessshon/tonutils",
+    url="https://github.com/toantt208/ston-utils",
     project_urls={
-        "Examples": "https://github.com/nessshon/tonutils/tree/main/examples",
-        "Source": "https://github.com/nessshon/tonutils",
+        "Examples": "https://github.com/toantt208/ston-utils/tree/main/examples",
+        "Source": "https://github.com/toantt208/ston-utils",
         "TON Blockchain": "https://ton.org",
     },
     packages=setuptools.find_packages(exclude=["examples", "tests*"]),
-    python_requires=">=3.10",
+    python_requires=">=3.9",
     install_requires=[
         "aiohttp~=3.9.5",
         "pycryptodomex~=3.20.0",
@@ -31,7 +31,7 @@ setuptools.setup(
         "pytoniq": ["pytoniq~=0.1.39"],
     },
     classifiers=[
-        "Development Status :: 4 - Beta",
+        "Development Status :: 0 - Beta",
         "Intended Audience :: Developers",
         "Intended Audience :: Financial and Insurance Industry",
         "Topic :: Software Development :: Libraries :: Python Modules",
