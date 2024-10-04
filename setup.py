@@ -31,7 +31,7 @@ setuptools.setup(
         "pytoniq": ["pytoniq~=0.1.39"],
     },
     classifiers=[
-        "Development Status :: 0 - Beta",
+        "Development Status :: 4 - Beta",
         "Intended Audience :: Developers",
         "Intended Audience :: Financial and Insurance Industry",
         "Topic :: Software Development :: Libraries :: Python Modules",
