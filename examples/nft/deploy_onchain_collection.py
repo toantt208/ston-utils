@@ -1,10 +1,10 @@
 from pytoniq_core import Address
 
-from tonutils.client import TonapiClient
-from tonutils.nft import CollectionEditableModified
-from tonutils.nft.content import CollectionModifiedOnchainContent
-from tonutils.nft.royalty_params import RoyaltyParams
-from tonutils.wallet import WalletV4R2
+from stonutils.client import TonapiClient
+from stonutils.nft import CollectionEditableModified
+from stonutils.nft.content import CollectionModifiedOnchainContent
+from stonutils.nft.royalty_params import RoyaltyParams
+from stonutils.wallet import WalletV4R2
 
 # API key for accessing the Tonapi (obtainable from https://tonconsole.com)
 API_KEY = ""

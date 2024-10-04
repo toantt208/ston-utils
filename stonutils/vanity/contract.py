@@ -2,8 +2,8 @@ from typing import Any, Optional, Union
 
 from pytoniq_core import Address, Cell, begin_cell
 
-from tonutils.contract import Contract
-from tonutils.vanity.data import VanityData
+from stonutils.contract import Contract
+from stonutils.vanity.data import VanityData
 
 
 class Vanity(Contract):

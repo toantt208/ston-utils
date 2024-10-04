@@ -1,10 +1,10 @@
 from pytoniq_core import Address
 
-from tonutils.client import TonapiClient
-from tonutils.nft import CollectionSoulbound
-from tonutils.nft.content import CollectionOffchainContent
-from tonutils.nft.royalty_params import RoyaltyParams
-from tonutils.wallet import WalletV4R2
+from stonutils.client import TonapiClient
+from stonutils.nft import CollectionSoulbound
+from stonutils.nft.content import CollectionOffchainContent
+from stonutils.nft.royalty_params import RoyaltyParams
+from stonutils.wallet import WalletV4R2
 
 # API key for accessing the Tonapi (obtainable from https://tonconsole.com)
 API_KEY = ""

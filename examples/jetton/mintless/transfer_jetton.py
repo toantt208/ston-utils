@@ -4,10 +4,10 @@ import aiohttp
 from aiohttp import ClientResponseError
 from pytoniq_core import Address, Cell, Slice, StateInit, begin_cell
 
-from tonutils.client import TonapiClient
-from tonutils.jetton import JettonWallet
-from tonutils.utils import to_amount
-from tonutils.wallet import WalletV4R2
+from stonutils.client import TonapiClient
+from stonutils.jetton import JettonWallet
+from stonutils.utils import to_amount
+from stonutils.wallet import WalletV4R2
 
 # API key for accessing the Tonapi (obtainable from https://tonconsole.com)
 API_KEY = ""

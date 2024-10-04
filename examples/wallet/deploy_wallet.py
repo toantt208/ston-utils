@@ -1,5 +1,5 @@
-from tonutils.client import TonapiClient
-from tonutils.wallet import (
+from stonutils.client import TonapiClient
+from stonutils.wallet import (
     WalletV3R1,
     # Uncomment the following lines to use different wallet versions:
     # WalletV3R2,

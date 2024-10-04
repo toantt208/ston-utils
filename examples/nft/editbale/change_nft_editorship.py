@@ -1,8 +1,8 @@
 from pytoniq_core import Address
 
-from tonutils.client import TonapiClient
-from tonutils.nft import NFTEditable
-from tonutils.wallet import WalletV4R2
+from stonutils.client import TonapiClient
+from stonutils.nft import NFTEditable
+from stonutils.wallet import WalletV4R2
 
 # API key for accessing the Tonapi (obtainable from https://tonconsole.com)
 API_KEY = ""

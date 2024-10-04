@@ -4,7 +4,7 @@ from typing import Any, Dict, List, Optional
 
 from pytoniq_core import Cell, Slice, TlbScheme, begin_cell
 
-from tonutils.utils import serialize_onchain_dict
+from stonutils.utils import serialize_onchain_dict
 
 
 class BaseOffchainContent(TlbScheme):

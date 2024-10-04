@@ -1,10 +1,10 @@
 from pytoniq_core import Address
 
-from tonutils.client import TonapiClient
-from tonutils.nft import Collection, NFT
-from tonutils.nft.marketplace.getgems.addresses import *
-from tonutils.nft.marketplace.getgems.contract.salev3r3 import SaleV3R3
-from tonutils.wallet import WalletV4R2
+from stonutils.client import TonapiClient
+from stonutils.nft import Collection, NFT
+from stonutils.nft.marketplace.getgems.addresses import *
+from stonutils.nft.marketplace.getgems.contract.salev3r3 import SaleV3R3
+from stonutils.wallet import WalletV4R2
 
 # API key for accessing the Tonapi (obtainable from https://tonconsole.com)
 API_KEY = ""

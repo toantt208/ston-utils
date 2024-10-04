@@ -1,8 +1,8 @@
 from pytoniq_core import Address
 
-from tonutils.client import TonapiClient
-from tonutils.dns.simple_subdomain import SubdomainManager
-from tonutils.wallet import WalletV4R2
+from stonutils.client import TonapiClient
+from stonutils.dns.simple_subdomain import SubdomainManager
+from stonutils.wallet import WalletV4R2
 
 # API key for accessing the Tonapi (obtainable from https://tonconsole.com)
 API_KEY = ""

@@ -1,6 +1,6 @@
-from tonutils.client import TonapiClient
-from tonutils.wallet import PreprocessedWalletV2R1
-from tonutils.wallet.data import TransferNFTData
+from stonutils.client import TonapiClient
+from stonutils.wallet import PreprocessedWalletV2R1
+from stonutils.wallet.data import TransferNFTData
 
 # API key for accessing the Tonapi (obtainable from https://tonconsole.com)
 API_KEY = ""

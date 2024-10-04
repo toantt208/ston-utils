@@ -5,10 +5,10 @@ pip install pytonapi
 from pytonapi import AsyncTonapi
 from pytoniq_core import Address, Cell
 
-from tonutils.client import TonapiClient
-from tonutils.jetton import JettonMaster, JettonWallet
-from tonutils.utils import to_nano
-from tonutils.wallet import WalletV5R1
+from stonutils.client import TonapiClient
+from stonutils.jetton import JettonMaster, JettonWallet
+from stonutils.utils import to_nano
+from stonutils.wallet import WalletV5R1
 
 # API key for accessing the Tonapi (obtainable from https://tonconsole.com)
 API_KEY = ""

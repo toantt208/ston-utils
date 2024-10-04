@@ -1,6 +1,6 @@
-from tonutils.client import TonapiClient
-from tonutils.wallet import HighloadWalletV2
-from tonutils.wallet.data import TransferJettonData
+from stonutils.client import TonapiClient
+from stonutils.wallet import HighloadWalletV2
+from stonutils.wallet.data import TransferJettonData
 
 # API key for accessing the Tonapi (obtainable from https://tonconsole.com)
 API_KEY = ""

@@ -17,11 +17,11 @@ Found: EQC7PA9iWnUVWv001Drj3vTu-pmAkTc30OarHy5iDJ1uNESS salt: 7c9398f0999a96fe54
 Step 4: Copy the `salt` value from the console output and use it in the `SALT` constant below.
 """
 
-from tonutils.client import TonapiClient
-from tonutils.jetton import JettonMaster
-from tonutils.jetton.content import JettonOnchainContent
-from tonutils.vanity import Vanity
-from tonutils.wallet import WalletV4R2
+from stonutils.client import TonapiClient
+from stonutils.jetton import JettonMaster
+from stonutils.jetton.content import JettonOnchainContent
+from stonutils.vanity import Vanity
+from stonutils.wallet import WalletV4R2
 
 # API key for accessing the Tonapi (obtainable from https://tonconsole.com)
 API_KEY = ""

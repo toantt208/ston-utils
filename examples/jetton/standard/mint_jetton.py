@@ -1,6 +1,6 @@
-from tonutils.client import TonapiClient
-from tonutils.jetton import JettonMaster
-from tonutils.wallet import WalletV4R2
+from stonutils.client import TonapiClient
+from stonutils.jetton import JettonMaster
+from stonutils.wallet import WalletV4R2
 
 # API key for accessing the Tonapi (obtainable from https://tonconsole.com)
 API_KEY = ""

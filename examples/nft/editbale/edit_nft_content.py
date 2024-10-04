@@ -1,7 +1,7 @@
-from tonutils.client import TonapiClient
-from tonutils.nft import NFTEditable
-from tonutils.nft.content import NFTOffchainContent
-from tonutils.wallet import WalletV4R2
+from stonutils.client import TonapiClient
+from stonutils.nft import NFTEditable
+from stonutils.nft.content import NFTOffchainContent
+from stonutils.wallet import WalletV4R2
 
 # API key for accessing the Tonapi (obtainable from https://tonconsole.com)
 API_KEY = ""

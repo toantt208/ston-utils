@@ -1,8 +1,8 @@
 import time
 
-from tonutils.client import TonapiClient
-from tonutils.jetton.dex.dedust import Asset, Factory, PoolType, SwapParams, VaultNative
-from tonutils.wallet import WalletV4R2
+from stonutils.client import TonapiClient
+from stonutils.jetton.dex.dedust import Asset, Factory, PoolType, SwapParams, VaultNative
+from stonutils.wallet import WalletV4R2
 
 # API key for accessing the Tonapi (obtainable from https://tonconsole.com)
 API_KEY = ""

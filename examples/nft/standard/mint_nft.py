@@ -1,10 +1,10 @@
 from pytoniq_core import Address
 
-from tonutils.client import TonapiClient
-from tonutils.nft.content import NFTOffchainContent
-from tonutils.nft.contract.standard.collection import CollectionStandard
-from tonutils.nft.contract.standard.nft import NFTStandard
-from tonutils.wallet import WalletV4R2
+from stonutils.client import TonapiClient
+from stonutils.nft.content import NFTOffchainContent
+from stonutils.nft.contract.standard.collection import CollectionStandard
+from stonutils.nft.contract.standard.nft import NFTStandard
+from stonutils.wallet import WalletV4R2
 
 # API key for accessing the Tonapi (obtainable from https://tonconsole.com)
 API_KEY = ""
