@@ -5,7 +5,6 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="stonutils",
-    version="0.0.5",
     author="toantt208",
     description=(
         "STonutils is a high-level, object-oriented Python library "
