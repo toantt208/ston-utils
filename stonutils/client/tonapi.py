@@ -16,7 +16,7 @@ class TonapiClient(Client):
 
     def __init__(
             self,
-            api_key: str,
+            api_key: Optional = None,
             is_testnet: Optional[bool] = False,
             base_url: Optional[str] = None,
     ) -> None:
@@ -31,7 +31,10 @@ class TonapiClient(Client):
         """
         if base_url is None:
             base_url = "https://tonapi.io" if not is_testnet else "https://testnet.tonapi.io"
-        headers = {"Authorization": f"Bearer {api_key}"}
+
+        headers = {}
+        if api_key:
+            headers = {"Authorization": f"Bearer {api_key}"}
 
         super().__init__(base_url=base_url, headers=headers)
 
