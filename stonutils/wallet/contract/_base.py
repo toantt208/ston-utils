@@ -163,7 +163,7 @@ class Wallet(Contract):
     @classmethod
     def create_wallet_internal_message(
             cls,
-            destination: Address,
+            destination: Union[Address, str],
             send_mode: int = 3,
             value: int = 0,
             body: Optional[Union[Cell, str]] = None,
@@ -188,6 +188,9 @@ class Wallet(Contract):
                 .store_snake_string(body)
                 .end_cell()
             )
+
+        if isinstance(destination, str):
+            destination = Address(destination)
 
         message = cls.create_internal_msg(
             dest=destination,
