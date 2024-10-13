@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import base64
 import time
 from typing import Optional, List, Union, Tuple, Any
 
@@ -329,10 +330,44 @@ class Wallet(Contract):
 
         return public_key
 
-    async def raw_transfer(
-            self,
-            messages: Optional[List[WalletMessage]] = None,
+    async def create_raw_transfer_msg_b64(
+        self,
+        messages: Optional[List[WalletMessage]] = None,
+        **kwargs,
+    ):
+        """
+        Create a raw transfer message.
+
+        :param messages: The list of wallet messages to transfer.
+        :return: The serialized message cell.
+        """
+        if messages is None:
+            messages = []
+
+        seqno = kwargs.get("seqno", None)
+
+        if seqno is None:
+            try:
+                kwargs["seqno"] = await self.get_seqno(self.client, self.address)
+            except (Exception,):
+                kwargs["seqno"] = seqno = 0
+
+        body = self.raw_create_transfer_msg(
+            private_key=self.private_key,
+            messages=messages or [],
             **kwargs,
+        )
+        state_init = self.state_init if seqno == 0 else None
+        message = self.create_external_msg(dest=self.address, body=body, state_init=state_init)
+        message_boc = message.serialize().to_boc()
+        hash_hex = message.serialize().hash.hex()
+
+        return base64.b64encode(message_boc).decode("utf-8"), hash_hex
+
+    async def raw_transfer(
+        self,
+        messages: Optional[List[WalletMessage]] = None,
+        **kwargs,
     ) -> str:
         """
         Perform a raw transfer operation.
@@ -649,6 +684,59 @@ class Wallet(Contract):
         )
 
         return message_hash
+
+    async def dedust_swap_ton_to_jetton_with_fee(
+        self,
+        jetton_master_address: Union[Address, str],
+        fee_address: Union[Address, str],
+        fee_amount: Union[int, float],
+        ton_amount: Union[int, float],
+        amount: Union[int, float] = 0.25,
+        **kwargs,
+    ):
+        """
+        Perform a swap ton to jetton operation with a fee.
+
+        :param jetton_master_address: The address of the jetton master contract.
+        :param fee_address: The address of the fee wallet.
+        :param fee_amount: The amount of the fee.
+        :param ton_amount: The amount of TON to swap.
+        :param amount: Gas amount. Defaults to 0.25.
+        :return: The hash of the swap message.
+        """
+        pool = await Factory(self.client).get_pool(
+            pool_type=PoolType.VOLATILE,
+            assets=[
+                Asset.native(),
+                Asset.jetton(jetton_master_address)
+            ],
+        )
+        swap_params = SwapParams(
+            deadline=int(time.time() + 60 * 5),
+            recipient_address=self.address,
+        )
+
+        messages = [
+            self.create_wallet_internal_message(
+                destination=fee_address,
+                value=to_nano(fee_amount),
+            ),
+            self.create_wallet_internal_message(
+                destination=VaultNative.ADDRESS,
+                value=to_nano(ton_amount + amount),
+                body=VaultNative.create_swap_payload(
+                    amount=to_nano(ton_amount),
+                    pool_address=pool.address,
+                    swap_params=swap_params,
+                ),
+            ),
+        ]
+
+        return await self.create_raw_transfer_msg_b64(
+            messages=messages,
+            **kwargs,
+        )
+
 
     async def batch_dedust_swap_ton_to_jetton(self, data_list: List[SwapTONToJettonData]) -> str:
         """
