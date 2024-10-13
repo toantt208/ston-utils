@@ -826,6 +826,67 @@ class Wallet(Contract):
 
         return message_hash
 
+    async def dedust_swap_jetton_to_ton_with_fee(
+        self,
+        jetton_master_address: Union[Address, str],
+        fee_address: Union[Address, str],
+        fee_amount: Union[int, float],
+        jetton_amount: Union[int, float],
+        jetton_decimals: int = 9,
+        amount: Union[int, float] = 0.3,
+        forward_amount: Union[int, float] = 0.25,
+        **kwargs,
+    ):
+        """
+        Perform a swap jetton to ton operation with a fee.
+
+        :param jetton_master_address: The address of the jetton master contract.
+        :param fee_address: The address of the fee wallet.
+        :param fee_amount: The amount of the fee.
+        :param jetton_amount: The amount of jettons to swap.
+        :param jetton_decimals: The number of jetton decimals. Defaults to 9.
+        :param amount: Gas amount. Defaults to 0.3.
+        :param forward_amount: Forward amount in TON. Defaults to 0.25.
+        :return: The hash of the swap jetton to ton message.
+        """
+        factory = Factory(self.client)
+        pool = await factory.get_pool(
+            pool_type=PoolType.VOLATILE,
+            assets=[
+                Asset.native(),
+                Asset.jetton(jetton_master_address),
+            ],
+        )
+        jetton_vault = await factory.get_jetton_vault(jetton_master_address)
+        jetton_wallet_address = await JettonMaster.get_wallet_address(
+            client=self.client,
+            owner_address=self.address.to_str(),
+            jetton_master_address=jetton_master_address,
+        )
+
+        messages = [
+            self.create_wallet_internal_message(
+                destination=fee_address,
+                value=to_nano(fee_amount),
+            ),
+            self.create_wallet_internal_message(
+                destination=jetton_wallet_address,
+                value=to_nano(amount),
+                body=JettonWallet.build_transfer_body(
+                    recipient_address=jetton_vault.address,
+                    jetton_amount=int(jetton_amount * (10 ** jetton_decimals)),
+                    response_address=self.address,
+                    forward_payload=jetton_vault.create_swap_payload(pool.address),
+                    forward_amount=to_nano(forward_amount),
+                ),
+            ),
+        ]
+
+        return await self.create_raw_transfer_msg_b64(
+            messages=messages,
+            **kwargs,
+        )
+
     async def batch_dedust_swap_jetton_to_ton(self, data_list: List[SwapJettonToTONData]) -> str:
         """
         Perform a batch swap jetton to ton operation.
